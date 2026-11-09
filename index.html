@@ -94,6 +94,7 @@
         <img id="img3" src="3.jpg" alt="林佳睦">
         <img id="img4" src="4.jpg" alt="黄秦韬">
         <img id="img5" src="5.jpg" alt="陈世宇">
+        <img id="img6" src="6.jpg" alt="陈春霖">
     </div>
 
     <script>
@@ -129,6 +130,9 @@
                 case '陈世宇':
                     document.getElementById('img5').style.display = 'block';
                     found = true;
+                 case '陈春霖':
+                    document.getElementById('img6').style.display = 'block';
+                    found = true
                     break;
                 default:
                     // 如果没有匹配的名字，显示提示信息
@@ -145,6 +149,3 @@
                 showPerson();
             }
         });
-    </script>
-</body>
-</html>
