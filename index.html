@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>查人小助手</title>
+    <style>
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 50px;
+            margin: 0;
+        }
+
+        .search-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        input {
+            padding: 12px 20px;
+            font-size: 18px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            width: 250px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: #007bff;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result-container {
+            width: 80%;
+            max-width: 500px;
+            min-height: 400px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 500px;
+            border-radius: 8px;
+            display: none; /* 默认隐藏，匹配到后显示 */
+        }
+
+        .message {
+            color: #888;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>输入姓名查看照片</h2>
+    
+    <div class="search-container">
+        <input type="text" id="nameInput" placeholder="请输入名字...">
+        <button onclick="showPerson()">搜索</button>
+    </div>
+
+    <div class="result-container" id="resultBox">
+        <span class="message" id="messageText">请输入名字，然后点击搜索</span>
+        <!-- 这里放置五个图片标签，默认隐藏 -->
+        <img id="img1" src="1.jpg" alt="陈鸿奥">
+        <img id="img2" src="2.jpg" alt="文兆钦">
+        <img id="img3" src="3.jpg" alt="林佳睦">
+        <img id="img4" src="4.jpg" alt="黄秦韬">
+        <img id="img5" src="5.jpg" alt="陈世宇">
+    </div>
+
+    <script>
+        function showPerson() {
+            // 获取输入框的值，并去除前后空格
+            const name = document.getElementById('nameInput').value.trim();
+            const messageText = document.getElementById('messageText');
+            
+            // 隐藏所有图片和提示文字
+            const allImages = document.querySelectorAll('img');
+            allImages.forEach(img => img.style.display = 'none');
+            messageText.style.display = 'none';
+
+            // 根据输入的名字显示对应的图片
+            let found = false;
+            switch (name) {
+                case '陈鸿奥':
+                    document.getElementById('img1').style.display = 'block';
+                    found = true;
+                    break;
+                case '文兆钦':
+                    document.getElementById('img2').style.display = 'block';
+                    found = true;
+                    break;
+                case '林佳睦':
+                    document.getElementById('img3').style.display = 'block';
+                    found = true;
+                    break;
+                case '黄秦韬':
+                    document.getElementById('img4').style.display = 'block';
+                    found = true;
+                    break;
+                case '陈世宇':
+                    document.getElementById('img5').style.display = 'block';
+                    found = true;
+                    break;
+                default:
+                    // 如果没有匹配的名字，显示提示信息
+                    messageText.innerText = '查无此人，请确认名字是否输入正确！';
+                    messageText.style.display = 'block';
+                    messageText.style.color = '#d9534f';
+                    break;
+            }
+        }
+
+        // 添加按回车键直接搜索的功能
+        document.getElementById('nameInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                showPerson();
+            }
+        });
+    </script>
+</body>
+</html>
